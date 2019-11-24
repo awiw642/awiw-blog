@@ -1,14 +1,10 @@
 {
-  "name": "gatsby-starter-typescript-plus",
-  "description": "A starter kit for TypeScript-based Gatsby projects with sensible defaults.",
+  "name": "awiw-blog",
+  "description": "A blog site that serves all sort of articles",
   "version": "1.0.0",
   "private": true,
-  "author": "Resi Respati <resir014@gmail.com>",
-  "keywords": [
-    "gatsby"
-  ],
+  "author": "Aprianto Wiwarsono",
   "license": "MIT",
-  "main": "n/a",
   "scripts": {
     "build": "gatsby build",
     "clean": "rimraf public",
@@ -18,7 +14,8 @@
     "lint": "eslint 'src/**/*.{ts,tsx}'",
     "start": "npm run dev",
     "test": "npm run type-check && npm run lint",
-    "type-check": "tsc"
+    "type-check": "tsc",
+    "update": "yarn upgrade-interactive"
   },
   "engines": {
     "node": ">=8.0.0"
@@ -66,7 +63,6 @@
     "eslint-config-blvd": "^0.1.1",
     "eslint-config-prettier": "^5.0.0",
     "eslint-plugin-prettier": "^3.1.0",
-    "gh-pages": "^2.0.1",
     "prettier": "^1.18.2",
     "rimraf": "^2.6.3"
   }
