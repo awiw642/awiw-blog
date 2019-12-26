@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Helmet from 'react-helmet'
-import { StaticQuery, graphql } from 'gatsby'
+import { useStaticQuery, graphql } from 'gatsby'
 
 import 'modern-normalize'
 import '../styles/normalize'
@@ -19,32 +19,30 @@ interface StaticQueryProps {
   }
 }
 
-const IndexLayout: React.FC = ({ children }) => (
-  <StaticQuery
-    query={graphql`
-      query IndexLayoutQuery {
-        site {
-          siteMetadata {
-            title
-            description
-          }
+const IndexLayout: React.FC = ({ children }) => {
+  const data = useStaticQuery<StaticQueryProps>(graphql`
+    query IndexLayoutQuery {
+      site {
+        siteMetadata {
+          title
+          description
         }
       }
-    `}
-    render={(data: StaticQueryProps) => (
-      <LayoutRoot>
-        <Helmet
-          title={data.site.siteMetadata.title}
-          meta={[
-            { name: 'description', content: data.site.siteMetadata.description },
-            { name: 'keywords', content: data.site.siteMetadata.keywords }
-          ]}
-        />
-        <Header title={data.site.siteMetadata.title} />
-        <LayoutMain>{children}</LayoutMain>
-      </LayoutRoot>
-    )}
-  />
-)
+    }
+  `)
+  return (
+    <LayoutRoot>
+      <Helmet
+        title={data.site.siteMetadata.title}
+        meta={[
+          { name: 'description', content: data.site.siteMetadata.description },
+          { name: 'keywords', content: data.site.siteMetadata.keywords }
+        ]}
+      />
+      <Header title={data.site.siteMetadata.title} />
+      <LayoutMain>{children}</LayoutMain>
+    </LayoutRoot>
+  )
+}
 
 export default IndexLayout
