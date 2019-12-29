@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import { transparentize } from 'polished'
 import { Link } from 'gatsby'
 
+import { HorizontalList } from './HorizontalList'
 import { heights, dimensions, colors } from '../styles/variables'
 import Container from './Container'
 
@@ -18,6 +19,7 @@ const HeaderInner = styled(Container)`
   flex-direction: row;
   align-items: center;
   height: 100%;
+  justify-content: space-between;
 `
 
 const HomepageLink = styled(Link)`
@@ -32,12 +34,21 @@ const HomepageLink = styled(Link)`
 
 interface HeaderProps {
   title: string
+  menu: {
+    display: string
+    to: string
+  }[]
 }
 
-const Header: React.FC<HeaderProps> = ({ title }) => (
+const Header: React.FC<HeaderProps> = ({ title, menu }) => (
   <StyledHeader>
     <HeaderInner>
       <HomepageLink to="/">{title}</HomepageLink>
+      <HorizontalList>
+        {menu.map(menuItem => (
+          <HomepageLink to={menuItem.to}>{menuItem.display}</HomepageLink>
+        ))}
+      </HorizontalList>
     </HeaderInner>
   </StyledHeader>
 )

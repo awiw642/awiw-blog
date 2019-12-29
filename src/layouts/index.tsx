@@ -19,6 +19,11 @@ interface StaticQueryProps {
   }
 }
 
+const menu = [
+  { display: 'Read', to: '/page-2' },
+  { display: 'Write', to: '/page-2' }
+]
+
 const IndexLayout: React.FC = ({ children }) => {
   const data = useStaticQuery<StaticQueryProps>(graphql`
     query IndexLayoutQuery {
@@ -39,7 +44,7 @@ const IndexLayout: React.FC = ({ children }) => {
           { name: 'keywords', content: data.site.siteMetadata.keywords }
         ]}
       />
-      <Header title={data.site.siteMetadata.title} />
+      <Header title={data.site.siteMetadata.title} menu={menu} />
       <LayoutMain>{children}</LayoutMain>
     </LayoutRoot>
   )
